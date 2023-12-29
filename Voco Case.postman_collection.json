@@ -1,0 +1,320 @@
+{
+	"info": {
+		"_postman_id": "c056c2a2-12bf-4fbd-8aa2-3537473fed51",
+		"name": "Voco Case",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28281179"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if (pm.response.code === 200) {",
+							"    pm.environment.set('authToken', pm.response.json().token)",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Monkey D. Luffy\",\n  \"email\": \"luffy@voco.com\",\n  \"password\": \"TestPassword1.,\",\n  \"age\": 19,\n  \"gender\": \"Male\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if (pm.response.code === 201) {",
+							"    pm.environment.set('authToken', pm.response.json().token)",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"luffy@voco.com\",\n  \"password\": \"TestPassword1.,\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Adress",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"address\": \"Foosha Village\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/add-address",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"add-address"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Restaurant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Voco Fast Food\",\n  \"description\": \"delicious dishes\",\n  \"address\": {\n    \"city\": \"Ankara\",\n    \"district\": \"Cankaya\",\n    \"fullAddress\": \"Ankara\"\n  },\n  \"location\": {\n    \"coordinates\": [50.000000, 60.000000],\n    \"type\": \"Point\"\n  },\n  \"branches\": [\n    {\n      \"city\": \"Ankara\",\n      \"district\": \"Cankaya\",\n      \"fullAddress\": \"Cankaya 2\"\n    }\n  ],\n  \"menu\": [\n    {\n      \"name\": \"dish 7\",\n      \"price\": 10,\n      \"content\": \"description of dish 7\"\n    },\n    {\n      \"name\": \"dish 8\",\n      \"price\": 15,\n      \"content\": \"description of dish 8\"\n    }\n  ],\n  \"types\": [\"fast food\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/restaurants",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"restaurants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Place Order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"restaurantId\": \"658ec12fc2ed6a0ddc41eef3\",\n  \"menuItems\": [\"658ec147c2ed6a0ddc41eefe\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/place-order",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"place-order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comment & Score",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"comment\": \"good hamburger\",\n  \"score\": 5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/add-comment/658ee332c2ed6a0ddc41ef55",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"add-comment",
+						"658ee332c2ed6a0ddc41ef55"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Menu",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"newMenus\": [\n    { \"name\": \"Small Cheese Pizza\", \"price\": 5, \"content\": \"cheese pizza\" },\n    { \"name\": \"Medium Mushroom Pizza\", \"price\": 10, \"content\": \"mushroom pizza\" },\n    { \"name\": \"Hamburger\", \"price\": 12, \"content\": \"hamburger\" }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/restaurants/add-menu/658ec12fc2ed6a0ddc41eef3",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"restaurants",
+						"add-menu",
+						"658ec12fc2ed6a0ddc41eef3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users/logout",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Restaurant List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/restaurants?page=1&limit=3",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"restaurants"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Problem 2 - Closest Restaurants including \"lahmacun\"",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/restaurants/nearby/39.93/32.85",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"restaurants",
+						"nearby",
+						"39.93",
+						"32.85"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{authToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
